@@ -48,7 +48,8 @@ PRODUCT_PACKAGES += \
     OPlusSettingsProviderResTarget \
     OPlusSettingsResTarget \
     OPlusSystemUIResTarget \
-    YAAPSettingsOverlay
+    OPlusWifiResTarget \
+    YAAPSettingsOverlay \
 
 # Power
 $(call soong_config_set,power_libperfmgr,mode_extension_lib,//$(LOCAL_PATH):libperfmgr-ext-aston)
