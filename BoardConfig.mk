@@ -15,6 +15,9 @@ DEVICE_PATH := device/oneplus/aston
 # Assert
 TARGET_OTA_ASSERT_DEVICE := OP5D35L1
 
+# Charging
+TARGET_CHARGE_RATE_MULTIPLIER := 1000
+
 # Display
 TARGET_SCREEN_DENSITY := 420
 
