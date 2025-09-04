@@ -33,6 +33,7 @@ import androidx.preference.PreferenceGroup;
 import androidx.preference.PreferenceManager;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.SwitchPreference;
+import androidx.preference.SwitchPreferenceCompat;
 import androidx.preference.TwoStatePreference;
 
 import java.util.Arrays;
@@ -85,7 +86,7 @@ public class OPlusExtras extends PreferenceFragment
     public static final String KEY_FPS_INFO_TEXT_SIZE = "fps_info_text_size";
     private static ListPreference mFpsInfoPosition;
     private static ListPreference mFpsInfoColor;
-    private static SwitchPreference mFpsInfo;
+    private static SwitchPreferenceCompat mFpsInfo;
     private CustomSeekBarPreference mFpsInfoTextSizePreference;
 
     public static final String KEY_CATEGORY_GPU = "gpu";
@@ -269,7 +270,7 @@ public class OPlusExtras extends PreferenceFragment
 
         // FPS
         if (isFeatureSupported(context, R.bool.config_deviceSupportsFPS)) {
-            mFpsInfo = (SwitchPreference) findPreference(KEY_FPS_INFO);
+            mFpsInfo = (SwitchPreferenceCompat) findPreference(KEY_FPS_INFO);
             mFpsInfo.setChecked(prefs.getBoolean(KEY_FPS_INFO, false));
             mFpsInfo.setOnPreferenceChangeListener(this);
 
@@ -563,7 +564,7 @@ public class OPlusExtras extends PreferenceFragment
         super.addPreferencesFromResource(preferencesResId);
         // Initialize node preferences
         for (String pref : SliderConstants.sBooleanNodePreferenceMap.keySet()) {
-            SwitchPreference b = (SwitchPreference) findPreference(pref);
+            SwitchPreferenceCompat b = (SwitchPreferenceCompat) findPreference(pref);
             if (b == null) continue;
             String node = SliderConstants.sBooleanNodePreferenceMap.get(pref);
             if (FileUtils.isFileReadable(node)) {
