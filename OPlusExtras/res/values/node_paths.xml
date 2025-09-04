@@ -11,14 +11,14 @@
     <string name="node_hbm_mode_switch_false"></string>
 
     <!-- DC-dimming sysfs node path, true, false -->
-    <string name="node_dc_mode_switch"></string>
-    <string name="node_dc_mode_switch_true"></string>
-    <string name="node_dc_mode_switch_false"></string>
+    <string name="node_dc_mode_switch">/sys/kernel/oplus_display/pwm_onepulse</string>
+    <string name="node_dc_mode_switch_true">1</string>
+    <string name="node_dc_mode_switch_false">0</string>
 
     <!-- Power Efficient Workqueue sysfs node path, true, false -->
-    <string name="node_power_efficient_workqueue_mode_switch"></string>
-    <string name="node_power_efficient_workqueue_mode_switch_true"></string>
-    <string name="node_power_efficient_workqueue_mode_switch_false"></string>
+    <string name="node_power_efficient_workqueue_mode_switch">/sys/module/workqueue/parameters/power_efficient</string>
+    <string name="node_power_efficient_workqueue_mode_switch_true">Y</string>
+    <string name="node_power_efficient_workqueue_mode_switch_false">N</string>
 
     <!-- MSM Touchboost sysfs node path, true, false -->
     <string name="node_touchboost_mode_switch"></string>
@@ -34,7 +34,7 @@
     <string name="node_adrenoboost_preference"></string>
 
     <!-- Measuered FPS sysfs node path -->
-    <string name="node_fps_info_service"></string>
+    <string name="node_fps_info_service">/sys/devices/platform/soc/ae00000.qcom,mdss_mdp/drm/card0/sde-crtc-0/measured_fps</string>
 
     <!-- PowerShare procfs node path -->
     <string name="node_powershare_mode_switch"></string>
@@ -55,14 +55,14 @@
     <string name="node_tp_edge_limit_mode_switch_false"></string>
 
     <!-- USB-OTG sysfs node path, true, false -->
-    <string name="node_otg_mode_switch"></string>
-    <string name="node_otg_mode_switch_true"></string>
-    <string name="node_otg_mode_switch_false"></string>
+    <string name="node_otg_mode_switch">/sys/class/oplus_chg/usb/otg_switch</string>
+    <string name="node_otg_mode_switch_true">1</string>
+    <string name="node_otg_mode_switch_false">0</string>
 
-    <!-- USB 2.0 Force fastcharge sysfs node path, true, false -->
-    <string name="node_usb2_fast_charge_mode_switch"></string>
-    <string name="node_usb2_fast_charge_mode_switch_true"></string>
-    <string name="node_usb2_fast_charge_mode_switch_false"></string>
+    <!-- USB 2.0 Force fastcharge sysfs node path -->
+    <string name="node_usb2_fast_charge_mode_switch">/sys/module/oplus_chg/parameters/force_fast_charge</string>
+    <string name="node_usb2_fast_charge_mode_switch_true">1</string>
+    <string name="node_usb2_fast_charge_mode_switch_false">0</string>
 
     <!-- System vibration sysfs node path -->
     <string name="node_vibrator_strength_preference"></string>
