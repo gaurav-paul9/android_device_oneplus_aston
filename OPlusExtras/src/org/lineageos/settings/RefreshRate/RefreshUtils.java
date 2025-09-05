@@ -91,7 +91,12 @@ public final class RefreshUtils {
         value = value.replace(packageName + ",", "");
         String[] modes = value.split(":");
         String finalString;
-
+        // FIX: Add a check to handle corrupted data
+        if (modes.length < 3) {
+            // If data is corrupted, start from a clean default slate
+            String defaultValue = REFRESH_STANDARD + ":" + REFRESH_HIGH + ":" + REFRESH_MAXIMUM;
+            modes = defaultValue.split(":");
+        }
         switch (mode) {
             case STATE_STANDARD:
                 modes[0] = modes[0] + packageName + ",";
@@ -112,6 +117,14 @@ public final class RefreshUtils {
     protected int getStateForPackage(String packageName) {
         String value = getValue();
         String[] modes = value.split(":");
+        // FIX: Add a check to handle corrupted data
+        if (modes.length < 3) {
+        // Data is corrupted. Reset it to default and return the default state.
+        // This makes the feature self-healing.
+        String defaultValue = REFRESH_STANDARD + ":" + REFRESH_HIGH + ":" + REFRESH_MAXIMUM;
+        writeValue(defaultValue);
+        modes = defaultValue.split(":");
+        }
         int state = STATE_DEFAULT;
         if (modes[0].contains(packageName + ",")) {
             state = STATE_STANDARD;
