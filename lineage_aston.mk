@@ -37,6 +37,10 @@ BYPASS_CHARGE_SUPPORTED ?= true
 # Blur
 TARGET_ENABLE_BLUR := true
 
+#ScrollOptimizer
+persist.sys.perf.scroll_opt = true
+persist.sys.perf.scroll_opt.heavy_app = 2
+
 PRODUCT_NAME := lineage_aston
 PRODUCT_DEVICE := aston
 PRODUCT_MANUFACTURER := OnePlus
