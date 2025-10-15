@@ -14,32 +14,16 @@ $(call inherit-product, device/oneplus/aston/device.mk)
 # Inherit some common Lineage stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
-# AxionOS-Specific Flags
+# Lunaris-Specific Flags
 AXION_MAINTAINER := Gaurav_Paul
 AXION_PROCESSOR := Snapdragon_8_Gen_2_(4_nm)
 PRODUCT_NO_CAMERA:= false
 TARGET_BOOT_ANIMATION_RES := 1080
 TARGET_DISABLE_EPPE := true
-TARGET_INCLUDES_LOS_PREBUILTS := true
-TARGET_PREBUILT_BCR := true
+WITH_GMS := true
+TARGET_USES_CORE_GAPPS := true
+WITH_BCR := true
 TARGET_SUPPORTS_QUICK_TAP := true
-
-# Define rear camera specs
-AXION_CAMERA_REAR_INFO := 50,8,2
-AXION_CAMERA_FRONT_INFO := 16
-
-# Flashlght_strength
-TORCH_STR_SUPPORTED := true
-
-# Charging
-BYPASS_CHARGE_SUPPORTED ?= true
-
-# Blur
-TARGET_ENABLE_BLUR := true
-
-#ScrollOptimizer
-persist.sys.perf.scroll_opt = true
-persist.sys.perf.scroll_opt.heavy_app = 2
 
 PRODUCT_NAME := lineage_aston
 PRODUCT_DEVICE := aston
@@ -56,3 +40,5 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     DeviceProduct=CPH2609 \
     SystemDevice=OP5D35L1 \
     SystemName=CPH2609
+#sign
+PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/lineage-priv/keys/releasekey
