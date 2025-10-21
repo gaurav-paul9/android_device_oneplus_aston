@@ -14,32 +14,33 @@ $(call inherit-product, device/oneplus/aston/device.mk)
 # Inherit some common Lineage stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
-# AxionOS-Specific Flags
-AXION_MAINTAINER := Gaurav_Paul
-AXION_PROCESSOR := Snapdragon_8_Gen_2_(4_nm)
-PRODUCT_NO_CAMERA:= false
-TARGET_BOOT_ANIMATION_RES := 1080
-TARGET_DISABLE_EPPE := true
-TARGET_INCLUDES_LOS_PREBUILTS := true
-TARGET_PREBUILT_BCR := true
-TARGET_SUPPORTS_QUICK_TAP := true
+# Euclid Stuff
+#For GMS
+WITH_GMS := true
+TARGET_BUILD_DOTGALLERY := true
+TARGET_BUILD_BCR := true
 
-# Define rear camera specs
-AXION_CAMERA_REAR_INFO := 50,8,2
-AXION_CAMERA_FRONT_INFO := 16
+#For maintainer
+PRODUCT_SYSTEM_PROPERTIES += \
+    ro.lineage.maintainer=Gaurav Paul       
 
-# Flashlght_strength
-TORCH_STR_SUPPORTED := true
+# Maintainer
+EUCLID_BUILD_TYPE := UNOFFICIAL
+EUCLID_MAINTAINER := Gaurav Paul
 
-# Charging
-BYPASS_CHARGE_SUPPORTED ?= true
+#Gapps
+EUCLID_GAPPS := true
+TARGET_SUPPORTS_GOOGLE_RECORDER := true
+TARGET_INCLUDE_STOCK_ARCORE := true
+TARGET_INCLUDE_LIVE_WALLPAPERS := true
+TARGET_INCLUDE_PIXEL_LAUNCHER := true
 
-# Blur
-TARGET_ENABLE_BLUR := true
+#UDFPS
+EXTRA_UDFPS_ANIMATIONS := true
+TARGET_HAS_UDFPS := true
 
-#ScrollOptimizer
-persist.sys.perf.scroll_opt = true
-persist.sys.perf.scroll_opt.heavy_app = 2
+#Misc.
+TARGET_SUPPORTS_TOUCHGESTURES := true
 
 PRODUCT_NAME := lineage_aston
 PRODUCT_DEVICE := aston
