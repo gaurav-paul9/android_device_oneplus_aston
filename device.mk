@@ -27,6 +27,11 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_SYSTEM_PROPERTIES += \
     sys.brightness.disable_gamma_conversion=true
+    ro.product.marketname=OnePlus 12R 5G
+    ro.infinity.soc=Snapdragon 8 Gen 2
+    ro.infinity.battery=5500 mAh
+    ro.infinity.display=1264 x 2780, 120 Hz
+    ro.infinity.camera=50MP + 8MP + 2MP
 
 # IR
 PRODUCT_COPY_FILES += \
