@@ -12,15 +12,22 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/oneplus/aston/device.mk)
 
 # Inherit some common Lineage stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+$(call inherit-product, vendor/infinity/config/common_full_phone.mk)
 
 # Infinity-X Specific Flags
-INFINITY_MAINTAINER := Someone
+INFINITY_MAINTAINER := Unknown
 INFINITY_BUILD_TYPE := UNOFFICIAL
 TARGET_HAS_UDFPS := true
 TARGET_SUPPORTS_QUICK_TAP := true
 TARGET_BOOT_ANIMATION_RES := 1080
 WITH_GAPPS := true
+
+PRODUCT_SYSTEM_PROPERTIES += \
+    ro.product.marketname=OnePlus 12R 5G \
+    ro.infinity.soc=Snapdragon 8 Gen 2 \
+    ro.infinity.battery=5500 mAh \
+    ro.infinity.display=1264 x 2780, 120 Hz \
+    ro.infinity.camera=50MP + 8MP + 2MP
 
 PRODUCT_NAME := infinity_aston
 PRODUCT_DEVICE := aston
