@@ -40,5 +40,3 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     DeviceProduct=CPH2609 \
     SystemDevice=OP5D35L1 \
     SystemName=CPH2609
-#sign
-PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/lineage-priv/keys/releasekey
