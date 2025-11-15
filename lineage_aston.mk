@@ -15,8 +15,6 @@ $(call inherit-product, device/oneplus/aston/device.mk)
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 # Lunaris-Specific Flags
-AXION_MAINTAINER := Gaurav_Paul
-AXION_PROCESSOR := Snapdragon_8_Gen_2_(4_nm)
 PRODUCT_NO_CAMERA:= false
 TARGET_BOOT_ANIMATION_RES := 1080
 TARGET_DISABLE_EPPE := true
@@ -24,6 +22,8 @@ WITH_GMS := true
 TARGET_USES_CORE_GAPPS := true
 WITH_BCR := true
 TARGET_SUPPORTS_QUICK_TAP := true
+TARGET_CUSTOM_UDFPS := true
+TARGET_INCLUDE_WEATHER := true
 
 PRODUCT_NAME := lineage_aston
 PRODUCT_DEVICE := aston
