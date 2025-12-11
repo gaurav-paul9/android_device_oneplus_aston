@@ -31,14 +31,14 @@ PRODUCT_NAME := lineage_aston
 PRODUCT_DEVICE := aston
 PRODUCT_MANUFACTURER := OnePlus
 PRODUCT_BRAND := OnePlus
-PRODUCT_MODEL := CPH2609
+PRODUCT_MODEL := CPH2585
 
 PRODUCT_GMS_CLIENTID_BASE := android-oneplus
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    BuildDesc="qssi-user 15 AP3A.240617.008 1758859159691 release-keys" \
-    BuildFingerprint=OnePlus/CPH2609EEA/OP5D35L1:15/TP1A.220905.001/U.R4T3.1632d6d_9d6f90_9e012b:user/release-keys \
+    BuildDesc="qssi-user 16 BP2A.250605.015 1763371040443 release-keys" \
+    BuildFingerprint=OnePlus/CPH2585IN/OP5D35L1:16/TP1A.220905.001/U.R4T3.2d10abf-c190f3-c190f4:user/release-keys \
     DeviceName=OP5D35L1 \
-    DeviceProduct=CPH2609 \
+    DeviceProduct=CPH2585 \
     SystemDevice=OP5D35L1 \
-    SystemName=CPH2609
+    SystemName=CPH2585
