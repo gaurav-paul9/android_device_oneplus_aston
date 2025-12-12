@@ -69,6 +69,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/root/vendor/odm/etc/23861/build.NA.prop:$(TARGET_COPY_OUT_ODM)/etc/23861/build.NA.prop \
     $(LOCAL_PATH)/recovery/root/vendor/odm/etc/23861/build.default.prop:$(TARGET_COPY_OUT_ODM)/etc/23861/build.default.prop
 
+# Revanced Integration
+$(call inherit-product, vendor/revanced/products/revanced.mk)
+
 # Sensors
 PRODUCT_PACKAGES += \
     sensors.oplus
