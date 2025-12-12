@@ -19,7 +19,7 @@
 
     <!-- RAM / DDR temperature path -->
     <string name="config_ram_temp_path">
-        /sys/class/thermal/thermal_zone58/temp
+        /sys/class/thermal/thermal_zone0/temp
     </string>
 
     <!-- Temperature divider (millidegree → Celsius) -->
