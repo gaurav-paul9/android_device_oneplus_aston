@@ -27,11 +27,6 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_SYSTEM_PROPERTIES += \
     sys.brightness.disable_gamma_conversion=true
-    ro.product.marketname=OnePlus 12R 5G
-    ro.infinity.soc=Snapdragon 8 Gen 2
-    ro.infinity.battery=5500 mAh
-    ro.infinity.display=1264 x 2780, 120 Hz
-    ro.infinity.camera=50MP + 8MP + 2MP
 
 # IR
 PRODUCT_COPY_FILES += \
@@ -68,10 +63,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/root/vendor/odm/etc/23861/build.IN.prop:$(TARGET_COPY_OUT_ODM)/etc/23861/build.IN.prop \
     $(LOCAL_PATH)/recovery/root/vendor/odm/etc/23861/build.NA.prop:$(TARGET_COPY_OUT_ODM)/etc/23861/build.NA.prop \
     $(LOCAL_PATH)/recovery/root/vendor/odm/etc/23861/build.default.prop:$(TARGET_COPY_OUT_ODM)/etc/23861/build.default.prop
-
-# Revanced Integration
-$(call inherit-product, vendor/revanced/products/revanced.mk)
-
+    
 # Sensors
 PRODUCT_PACKAGES += \
     sensors.oplus
@@ -102,6 +94,3 @@ $(call inherit-product, device/oneplus/sm8550-common/common.mk)
 
 # Inherit from the proprietary files makefile.
 $(call inherit-product, vendor/oneplus/aston/aston-vendor.mk)
-
-# GameBar Performance Overlay
-$(call inherit-product, packages/apps/GameBar/gamebar.mk)
