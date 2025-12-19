@@ -1,28 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Copyright (C) 2022 The LineageOS Project
-    SPDX-License-Identifier: Apache-2.0
+     Copyright (C) 2022 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
 
     <!-- Color of the UDFPS Pressed view -->
     <color name="config_udfpsColor">#ffffe6</color>
-
-    <!-- ============================= -->
-    <!--        GameBar Config         -->
-    <!-- ============================= -->
-
-    <!-- GPU temperature path -->
-    <string name="config_gpu_temp_path">
-        /sys/class/kgsl/kgsl-3d0/temp
-    </string>
-
-    <!-- RAM / DDR temperature path -->
-    <string name="config_ram_temp_path">
-        /sys/class/thermal/thermal_zone2/temp
-    </string>
-
-    <!-- Temperature divider (millidegree → Celsius) -->
-    <integer name="config_cpu_temp_divider">1000</integer>
 
 </resources>
