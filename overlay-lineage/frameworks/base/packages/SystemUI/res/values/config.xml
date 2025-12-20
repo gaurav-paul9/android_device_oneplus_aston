@@ -9,3 +9,6 @@
     <color name="config_udfpsColor">#ffffe6</color>
 
 </resources>
+
+<!-- System Info -->
+<integer name="config_sysCPUTempMultiplier">1000</integer>
