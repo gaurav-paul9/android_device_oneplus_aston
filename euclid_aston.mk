@@ -11,18 +11,16 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from aston device
 $(call inherit-product, device/oneplus/aston/device.mk)
 
-# Inherit some common Lineage stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit some common euclid stuff.
+$(call inherit-product, vendor/euclid/config/common_full_phone.mk)
 
 # Euclid Stuff
 #For GMS
 WITH_GMS := true
 TARGET_BUILD_DOTGALLERY := true
 TARGET_BUILD_BCR := true
-
-#For maintainer
-PRODUCT_SYSTEM_PROPERTIES += \
-    ro.lineage.maintainer=Gaurav Paul       
+EUCLID_DEVICE := OnePlus_12R
+EUCLID_PROCESSOR := Snapdragon_8_Gen_2
 
 # Maintainer
 EUCLID_BUILD_TYPE := UNOFFICIAL
