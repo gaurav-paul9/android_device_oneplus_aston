@@ -13,6 +13,19 @@ $(call inherit-product, device/oneplus/aston/device.mk)
 # Inherit some common Lineage stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
+# Lunaris-Specific Flags
+PRODUCT_NO_CAMERA:= false
+TARGET_BOOT_ANIMATION_RES := 1080
+TARGET_DISABLE_EPPE := true
+WITH_GMS := true
+WITH_BCR := true
+TARGET_SUPPORTS_QUICK_TAP := true
+TARGET_CUSTOM_UDFPS := true
+TARGET_INCLUDE_LIVE_WALLPAPERS := true
+TARGET_SUPPORTS_GOOGLE_FILES := true
+TARGET_INCLUDE_WEATHER := true
+TARGET_SUPPORTS_GOOGLE_TELEPHONY := false
+
 PRODUCT_NAME := lineage_aston
 PRODUCT_DEVICE := aston
 PRODUCT_MANUFACTURER := OnePlus
