@@ -14,28 +14,26 @@ $(call inherit-product, device/oneplus/aston/device.mk)
 # Inherit some common Lineage stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
-# AxionOS-Specific Flags
-AXION_MAINTAINER := Gaurav_Paul
-AXION_PROCESSOR := Snapdragon_8_Gen_2_(4_nm)
+# Evox-Specific Flags
 PRODUCT_NO_CAMERA:= false
-TARGET_BOOT_ANIMATION_RES := 1080
 TARGET_DISABLE_EPPE := true
-TARGET_INCLUDES_LOS_PREBUILTS := true
-TARGET_PREBUILT_BCR := true
 TARGET_SUPPORTS_QUICK_TAP := true
-
-# Define rear camera specs
-AXION_CAMERA_REAR_INFO := 50,8,2
-AXION_CAMERA_FRONT_INFO := 16
+BUILD_BCR := true
+WITH_GMS := true
+TARGET_HAS_UDFPS := true
 
 # Flashlght_strength
 TORCH_STR_SUPPORTED := true
 
 # Charging
-BYPASS_CHARGE_SUPPORTED ?= true
+BYPASS_CHARGE_SUPPORTED := true
 
 # Blur
 TARGET_ENABLE_BLUR := true
+
+#Boot Animation
+TARGET_SCREEN_HEIGHT := 2400
+TARGET_SCREEN_WIDTH := 1080
 
 #ScrollOptimizer
 persist.sys.perf.scroll_opt = true
