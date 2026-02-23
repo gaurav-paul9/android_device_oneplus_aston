@@ -1,2 +1,5 @@
 # IFAA
 sys.oplus.ifaa.model=ONEPLUS-R23801
+
+# Maintainer_flag
+ro.lunaris.maintainer=Gaurav Paul
