@@ -22,7 +22,4 @@
     <!-- Charging info current divider, if needed -->
     <integer name="config_currentInfoDivider" translatable="false">1</integer>
 
-    <!-- Whether key handler sends intent when changing slider position -->
-    <string name="config_alertSliderIntent">org.lineageos.device.settings.UPDATE_SLIDER_POSITION</string>
-
 </resources>
