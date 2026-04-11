@@ -16,13 +16,14 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 # AxionOS-Specific Flags
 AXION_MAINTAINER := Gaurav_Paul
-AXION_PROCESSOR := Snapdragon_8_Gen_2_(4_nm)
+AXION_PROCESSOR := Snapdragon_8_Gen_2
 PRODUCT_NO_CAMERA:= false
 TARGET_BOOT_ANIMATION_RES := 1080
 TARGET_DISABLE_EPPE := true
 TARGET_INCLUDES_LOS_PREBUILTS := true
 TARGET_PREBUILT_BCR := true
 TARGET_SUPPORTS_QUICK_TAP := true
+TARGET_INCLUDE_AXFX := true
 
 # Define rear camera specs
 AXION_CAMERA_REAR_INFO := 50,8,2
@@ -33,6 +34,8 @@ TORCH_STR_SUPPORTED := true
 
 # Charging
 BYPASS_CHARGE_SUPPORTED ?= true
+BYPASS_CHARGE_TOGGLE_PATH ?= /sys/class/power_supply/battery/input_suspend
+BYPASS_CHARGE_LEVEL_PATH ?= /sys/devices/platform/google,charger/charge_stop_level
 
 # Blur
 TARGET_ENABLE_BLUR := true
