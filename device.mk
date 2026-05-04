@@ -38,13 +38,9 @@ PRODUCT_PACKAGES += \
 $(call soong_config_set,surfaceflinger,udfps_lib,//hardware/oplus:libudfps_extension.oplus)
 $(call soong_config_set_bool,qtidisplay,oplus_udfps,true)
 
-# LiveDisplay
-$(call soong_config_set_bool,OPLUS_LINEAGE_LIVEDISPLAY_HAL,ENABLE_AF,true)
-$(call soong_config_set_bool,OPLUS_LINEAGE_LIVEDISPLAY_HAL,ENABLE_SE,false)
-
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay-lineage
+    $(LOCAL_PATH)/overlay-yaap
 
 PRODUCT_PACKAGES += \
     FrameworksResEuicc_NA \
@@ -52,7 +48,8 @@ PRODUCT_PACKAGES += \
     OPlusFrameworksResTarget \
     OPlusSettingsProviderResTarget \
     OPlusSettingsResTarget \
-    OPlusSystemUIResTarget
+    OPlusSystemUIResTarget \
+    YAAPSettingsOverlay
 
 # Power
 $(call soong_config_set,power_libperfmgr,mode_extension_lib,//$(LOCAL_PATH):libperfmgr-ext-aston)
@@ -80,9 +77,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.euicc.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.hardware.telephony.euicc.xml
-
-# Touch
-$(call soong_config_set_bool,OPLUS_LINEAGE_TOUCH_HAL,USE_OPLUSTOUCH,true)
 
 # Vibrator
 PRODUCT_PACKAGES += \

@@ -31,3 +31,5 @@ TARGET_RECOVERY_UI_MARGIN_HEIGHT := 103
 
 # Include the proprietary files BoardConfig.
 include vendor/oneplus/aston/BoardConfigVendor.mk
+
+PRODUCT_SOONG_NAMESPACES += hardware/oplus/bootctrl

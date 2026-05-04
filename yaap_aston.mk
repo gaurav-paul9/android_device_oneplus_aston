@@ -11,10 +11,15 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from aston device
 $(call inherit-product, device/oneplus/aston/device.mk)
 
-# Inherit some common Lineage stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit some common YAAP stuff.
+$(call inherit-product, vendor/yaap/config/common_full_phone.mk)
 
-PRODUCT_NAME := lineage_aston
+# YAAP specific flags
+TARGET_ENABLE_BLUR := true
+TARGET_EXCLUDES_AUDIOFX := true
+TARGET_BOOT_ANIMATION_RES := 1080
+
+PRODUCT_NAME := yaap_aston
 PRODUCT_DEVICE := aston
 PRODUCT_MANUFACTURER := OnePlus
 PRODUCT_BRAND := OnePlus
