@@ -26,6 +26,8 @@ TARGET_INCLUDE_LIVE_WALLPAPERS := true
 TARGET_SUPPORTS_GOOGLE_FILES := true
 TARGET_INCLUDE_WEATHER := true
 TARGET_SUPPORTS_GOOGLE_TELEPHONY := false
+USE_REALITY_ENGINE := true
+SURFACE_FLINGER_BOOST := true
 
 PRODUCT_NAME := lineage_aston
 PRODUCT_DEVICE := aston
@@ -42,3 +44,5 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     DeviceProduct=CPH2585 \
     SystemDevice=OP5D35L1 \
     SystemName=CPH2585
+
+$(call inherit-product, vendor/lunaris-priv/keys/keys.mk)
