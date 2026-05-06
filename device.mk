@@ -26,6 +26,8 @@ PRODUCT_SYSTEM_PROPERTIES += \
 
 $(call soong_config_set,qtidisplay,pxlw_vendor_namespace,vendor/oneplus/aston)
 $(call soong_config_set_bool,qtidisplay,pxlw_hw_iris7,true)
+$(call soong_config_set,surfaceflinger,frame_rate_category_high,120)
+$(call soong_config_set,surfaceflinger,frame_rate_category_min,1)
 
 # IR
 PRODUCT_COPY_FILES += \
