@@ -1247,6 +1247,11 @@ vendor/lib64/vendor.oplus.hardware.commondcs-V1-ndk_platform.so
 vendor/lib64/vendor.qti.hardware.camera.aon-service-impl.so
 vendor/lib64/vendor.qti.hardware.camera.postproc@1.0-service-impl.so
 
+# Camera firmware
+vendor/firmware/CAMERA_ICP.b20
+vendor/firmware/CAMERA_ICP.mbn
+vendor/firmware/CAMERA_ICP.mdt
+
 # Charger firmware
 odm/firmware/fastchg/23861/charging_hyper_mode_config.txt
 odm/firmware/fastchg/bms_heating_config.txt
@@ -1313,6 +1318,11 @@ vendor/etc/ltm_config_AA551_P_3_A0004_dsc_cmd_mode_panel.xml
 my_product/etc/permissions/EuiccGoogle_grant_permissions_list.xml:product/etc/permissions/privapp-permissions-euiccgoogle.xml
 my_product/priv-app/EuiccGoogle/EuiccGoogle.apk:product/priv-app/EuiccGoogle/EuiccGoogle.apk;PRESIGNED
 
+# EVA firmware
+vendor/firmware/evass.b19
+vendor/firmware/evass.mbn
+vendor/firmware/evass.mdt
+
 # Fingerprint firmware
 odm/vendor/firmware/uff_gx.b00
 odm/vendor/firmware/uff_gx.b01
@@ -1334,6 +1344,21 @@ odm/vendor/firmware/uff_spi.b06
 odm/vendor/firmware/uff_spi.b07
 odm/vendor/firmware/uff_spi.b08
 odm/vendor/firmware/uff_spi.mdt
+
+# Graphics (Adreno firmware)
+vendor/firmware/a740_zap.b02
+vendor/firmware/a740_zap.mbn
+vendor/firmware/a740_zap.mdt
+
+# GNSS
+odm/etc/izat.conf
+
+# Horae
+system_ext/etc/horae/horae.conf
+system_ext/etc/horae/horae_SM8550.conf
+
+# Neural networks
+odm/lib64/libaiboost_te.so;FIX_SONAME
 
 # NFC configs
 odm/etc/nfc/libnfc-mtp-SN220.conf_23801:odm/etc/libnfc-mtp-SN220.conf_23801
@@ -1395,6 +1420,9 @@ odm/firmware/ufs/SAMSUNG-KLUGGARHHD-B0G1.bin
 odm/firmware/ufs/SKhynix-HN8T274EJKX130.bin
 odm/firmware/ufs/move_target_ufs_fw_to_oplusreserve1.sh
 odm/firmware/ufs/ufs_version_config.xml
+
+# VPU firmware
+vendor/firmware/vpu30_4v.mbn
 
 # WiFi
 odm/etc/wifi/kiwi/bdwlan.b0a
