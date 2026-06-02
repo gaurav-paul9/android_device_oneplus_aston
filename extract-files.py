@@ -51,7 +51,11 @@ blob_fixups: blob_fixups_user_type = {
         .regex_replace('(NXPLOG_.*_LOGLEVEL)=0x03', '\\1=0x02')
         .regex_replace('NFC_DEBUG_ENABLED=1', 'NFC_DEBUG_ENABLED=0'),
     'odm/lib64/libAlgoProcess.so': blob_fixup()
-        .replace_needed('android.hardware.graphics.common-V3-ndk.so', 'android.hardware.graphics.common-V7-ndk.so'),
+        .replace_needed('android.hardware.graphics.common-V3-ndk.so', 'android.hardware.graphics.common-V7-ndk.so')
+        .binary_regex_replace(
+            b'\x83\x33\x6f\xb9\x84\x4f\x6f\xb9\x85\x53\x6f\xb9',
+            b'\x83\x33\x6f\xb9\x84\x4f\x6f\xb9\x85\x4f\x6f\xb9',
+        ),
     (
         'odm/lib64/libCOppLceTonemapAPI.so',
         'odm/lib64/libSuperRaw.so',
@@ -75,8 +79,16 @@ blob_fixups: blob_fixups_user_type = {
         .clear_symbol_version('remote_handle_open')
         .clear_symbol_version('remote_register_buf_attr')
         .clear_symbol_version('remote_register_buf'),
+    'odm/lib64/libBasicTonePhoto.so': blob_fixup()
+        .binary_regex_replace(
+            b'vec4\\(dstYuv\\.r, dstYuv\\.b, dstYuv\\.g, 1\\.0\\)',
+            b'vec4(dstYuv.r, dstYuv.g, dstYuv.b, 1.0)',
+        ),
     'odm/lib64/libextensionlayer.so': blob_fixup()
-        .replace_needed('libziparchive.so', 'libziparchive_odm.so'),
+        .replace_needed('libziparchive.so', 'libziparchive_odm.so')
+        .replace_needed('vendor.oplus.hardware.performance-V1-ndk_platform.so', 'vendor.oplus.hardware.performance-V1-ndk.so'),
+    'odm/lib64/libsensorbridge.so': blob_fixup()
+        .replace_needed('android.hardware.sensors-V2-ndk.so', 'android.hardware.sensors-V3-ndk.so'),
     (
         'vendor/bin/hw/vendor.qti.camera.provider-service_64',
         'vendor/lib64/camx.provider-impl.so',
