@@ -24,6 +24,9 @@ namespace_imports = [
     'vendor/oneplus/sm8550-common',
     'vendor/qcom/opensource/display',
     'vendor/qcom/opensource/commonsys-intf/display',
+    # libAlgoProcess.so gets a DT_NEEDED on libapsfixup (the APS turbo fix interposer), which is
+    # defined in the device/oneplus/aston namespace -- import it so the blob can resolve it.
+    'device/oneplus/aston',
 ]
 
 
@@ -52,10 +55,7 @@ blob_fixups: blob_fixups_user_type = {
         .regex_replace('NFC_DEBUG_ENABLED=1', 'NFC_DEBUG_ENABLED=0'),
     'odm/lib64/libAlgoProcess.so': blob_fixup()
         .replace_needed('android.hardware.graphics.common-V3-ndk.so', 'android.hardware.graphics.common-V7-ndk.so')
-        .binary_regex_replace(
-            b'\x83\x33\x6f\xb9\x84\x4f\x6f\xb9\x85\x53\x6f\xb9',
-            b'\x83\x33\x6f\xb9\x84\x4f\x6f\xb9\x85\x4f\x6f\xb9',
-        ),
+        .add_needed('libapsfixup.so'),
     (
         'odm/lib64/libCOppLceTonemapAPI.so',
         'odm/lib64/libSuperRaw.so',
