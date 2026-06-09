@@ -44,7 +44,9 @@ lib_fixups: lib_fixups_user_type = {
 
 blob_fixups: blob_fixups_user_type = {
     'odm/etc/camera/CameraHWConfiguration.config': blob_fixup()
-        .regex_replace('SystemCamera =  0;  0;  0;  1;  0;  1;', 'SystemCamera =  0;  0;  0;  0;  0;  0;'),
+        .regex_replace('SystemCamera =  0;  0;  0;  1;  0;  1;', 'SystemCamera =  0;  0;  0;  0;  0;  0;')
+        .regex_replace('enableSWfdForThirdCamUnit   = FALSE', 'enableSWfdForThirdCamUnit   = TRUE')
+        .regex_replace('fdSupport                 = FALSE;', 'fdSupport                 = TRUE;'),
     'odm/etc/init/init.camera_process.rc': blob_fixup()
         .regex_replace('    delete_recursion', '    #delete_recursion'),
     (
@@ -64,6 +66,9 @@ blob_fixups: blob_fixups_user_type = {
     ): blob_fixup()
         .replace_needed('libstdc++.so', 'libstdc++_vendor.so'),
     (
+        'odm/lib64/libAncHumanSegFigureFusion.so',
+        'odm/lib64/libEIS.so',
+        'odm/lib64/libEISLive.so',
         'odm/lib64/libHIS.so',
         'odm/lib64/libOGLManager.so',
         'odm/lib64/libOPAlgoCamFaceBeautyCap.so'
