@@ -9,7 +9,7 @@
     <bool name="config_automatic_brightness_available">true</bool>
 
     <!-- Fast brightness animation ramp rate in brightness units per second-->
-    <integer name="config_brightness_ramp_rate_fast">400</integer>
+    <integer name="config_brightness_ramp_rate_fast">2000</integer>
 
     <!-- Slow brightness animation ramp rate in brightness units per second-->
     <integer name="config_brightness_ramp_rate_slow">50</integer>
@@ -49,8 +49,8 @@
          when adapting to brighter or darker environments.  This parameter controls how quickly
          brightness changes occur in response to an observed change in light level that exceeds the
          hysteresis threshold. -->
-    <integer name="config_autoBrightnessBrighteningLightDebounce">1000</integer>
-    <integer name="config_autoBrightnessDarkeningLightDebounce">750</integer>
+    <integer name="config_autoBrightnessBrighteningLightDebounce">1500</integer>
+    <integer name="config_autoBrightnessDarkeningLightDebounce">1000</integer>
 
     <!-- The maximum range of gamma adjustment possible using the screen
          auto-brightness adjustment setting. -->
@@ -214,13 +214,13 @@
          the screen brightness is recalculated. See the config_ambientThresholdLevels
          description for how the constraint value is chosen. -->
      <integer-array name="config_ambientBrighteningThresholds">
-     <item>2500</item> <!-- 0 - 50 -->
-     <item>1200</item> <!-- 50 - 150 -->
-     <item>700</item>  <!-- 150 - 500 -->
-     <item>500</item>  <!-- 500 - 1000 -->
-     <item>400</item>  <!-- 1000 - 2000 -->
-     <item>400</item>  <!-- 2000 - 4000 -->
-     <item>400</item>  <!-- 4000+ -->
+     <item>4000</item> <!--  0 - 50   (40%) -->
+     <item>2000</item> <!-- 50 - 150  (20%) -->
+     <item>1200</item> <!-- 150 - 500 (12%) -->
+     <item>700</item>  <!-- 500 - 1000  (7%) -->
+     <item>500</item>  <!-- 1000 - 2000  (5%) -->
+     <item>500</item>  <!-- 2000 - 4000  (5%) -->
+     <item>500</item>  <!-- 4000+        (5%) -->
      </integer-array>
 
     <!-- Array of hysteresis constraint values for darkening, represented as tenths of a
@@ -230,13 +230,13 @@
          the screen brightness is recalculated. See the config_ambientThresholdLevels
          description for how the constraint value is chosen. -->
     <integer-array name="config_ambientDarkeningThresholds">
-        <item>1</item>    <!--     0 - 50    -->
-        <item>50</item>   <!--    50 - 150   -->
-        <item>450</item>  <!--   115 - 500   -->
-        <item>500</item>  <!--   500 - 1000  -->
-        <item>500</item>  <!--  1000 - 2000  -->
-        <item>500</item>  <!--  2000 - 4000  -->
-        <item>500</item>  <!--     4000+     -->
+        <item>2000</item> <!--  0 - 50   (20%) -->
+        <item>1000</item> <!-- 50 - 150  (10%) -->
+        <item>500</item>  <!-- 150 - 500   (5%) -->
+        <item>400</item>  <!-- 500 - 1000  (4%) -->
+        <item>400</item>  <!-- 1000 - 2000 (4%) -->
+        <item>400</item>  <!-- 2000 - 4000 (4%) -->
+        <item>400</item>  <!-- 4000+       (4%) -->
     </integer-array>
 
     <!-- Array of hysteresis constraint values for brightening, represented as tenths of a
@@ -246,7 +246,7 @@
          than this threshold, it is applied. See the config_screenThresholdLevels description for
          how the constraint value is chosen. -->
     <integer-array name="config_screenBrighteningThresholds">
-        <item>0</item>
+        <item>100</item>   <!-- 1% minimum nits change to apply -->
     </integer-array>
 
     <!-- Array of hysteresis constraint values for darkening, represented as tenths of a
@@ -256,7 +256,7 @@
          this threshold, it is applied. See the config_screenThresholdLevels description for how
          the constraint value is chosen. -->
     <integer-array name="config_screenDarkeningThresholds">
-        <item>0</item>
+        <item>50</item>   <!-- 0.5% minimum change to apply -->
     </integer-array>
 
     <!-- Type of the udfps long press sensor. Empty if long press is not supported. -->
