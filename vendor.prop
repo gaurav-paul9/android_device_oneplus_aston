@@ -7,3 +7,7 @@ ro.surface_flinger.set_touch_timer_ms=300
 
 # USB
 vendor.usb.product_string=OnePlus 12R
+
+# Camera
+ro.vendor.oplus.market.enname=OnePlus 12R
+ro.vendor.oplus.market.name=OnePlus 12R
