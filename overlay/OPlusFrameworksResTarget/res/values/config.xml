@@ -56,6 +56,11 @@
          auto-brightness adjustment setting. -->
     <fraction name="config_autoBrightnessAdjustmentMaxGamma">100%</fraction>
 
+    <!-- The ambient lux level at which the short-term model of auto-brightness
+         adjustment is reset. When the lux crosses this threshold, any manual
+         brightness adjustment is cleared and auto-brightness resumes full control. -->
+    <integer name="config_autoBrightnessResetLevel">10000</integer>
+
     <!-- Screen brightness used to dim the screen when the user activity
          timeout expires.  May be less than the minimum allowed brightness setting
          that can be set by the user. -->
