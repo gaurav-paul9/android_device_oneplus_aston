@@ -1,4 +1,4 @@
-// libapsfixup.so — permanent native fix for the OnePlus(aston) APS turbo soft/green/crash bug.
+// libapsfixup.so — permanent native fix for the OnePlus(dodge) APS turbo soft/green/crash bug.
 //
 // Root cause: the port's gralloc reports a wrong plane layout for the 12.5MP P010 capture
 // output, so the byte-identical ArcSoft/Algo blobs compute a garbage chroma plane pointer
@@ -17,9 +17,9 @@
 //     JUMP_SLOT in libAlgoInterface so our wrapper is what gets stored in the engine struct.
 //
 // Loaded into com.oplus.camera as a DT_NEEDED of /odm/lib64/libAlgoProcess.so. Offsets are
-// pinned to the aston blobs (TODO: update offsets for actual aston blob builds):
-//   libAlgoProcess.so    BuildId ???  p010LSB2MSBNeon @ ???, its GOT slot @ ???
-//   libAlgoInterface.so  BuildId ???  dlsym GOT slot @ ???
+// pinned to the dodge blobs:
+//   libAlgoProcess.so    BuildId db5afd2a..  p010LSB2MSBNeon @ +0x4bd934, its GOT slot @ +0x62db58
+//   libAlgoInterface.so  BuildId a81b2d71..  dlsym GOT slot @ +0x23c8c58
 //
 #include <android/log.h>
 #include <dlfcn.h>
@@ -37,21 +37,23 @@
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, TAG, __VA_ARGS__)
 #define LOGW(...) __android_log_print(ANDROID_LOG_WARN, TAG, __VA_ARGS__)
 
-static const uintptr_t P010_FUNC_OFF = 0x4bd934;   // TODO: update for aston blob
-static const uintptr_t P010_GOT_OFF  = 0x62db58;   // TODO: update for aston blob
-static const uintptr_t DLSYM_GOT_OFF = 0x23c8c58;  // TODO: update for aston blob
+static const uintptr_t P010_FUNC_OFF = 0x4bd934;   // p010LSB2MSBNeon in libAlgoProcess
+static const uintptr_t P010_GOT_OFF  = 0x62db58;   // its JUMP_SLOT GOT entry
+static const uintptr_t DLSYM_GOT_OFF = 0x23c8c58;  // dlsym JUMP_SLOT GOT entry in libAlgoInterface
 
 static inline bool is_buf(uint64_t v)     { uint32_t hi=(uint32_t)(v>>32); return hi>=0x70 && hi<=0x7f && (uint32_t)v >= 0x100000u; }
 static inline bool is_garbage(uint64_t v) { uint32_t hi=(uint32_t)(v>>32); return hi>=0x70 && hi<=0x7f && (uint32_t)v <  0x100000u; }
 
 static bool range_of(uint64_t addr, uint64_t* out_base, uint64_t* out_size) {
+    // Low-Level Read via Linux Syscalls (Zero Locks, Zero Allocations)
+    // Extreme speed to handle dozens of simultaneous threads without timeouts.
     int fd = open("/proc/self/maps", O_RDONLY | O_CLOEXEC);
     if (fd < 0) return false;
 
-    char buf[8192];
+    char buf[8192]; // Read in large 8KB blocks at a time
     ssize_t bytes;
     uint64_t lo = 0, hi = 0;
-    int state = 0;
+    int state = 0; // 0=reading start, 1=reading end, 2=skipping to next line
 
     while ((bytes = read(fd, buf, sizeof(buf))) > 0) {
         for (ssize_t i = 0; i < bytes; i++) {
@@ -65,15 +67,15 @@ static bool range_of(uint64_t addr, uint64_t* out_base, uint64_t* out_size) {
                         *out_base = lo;
                         *out_size = hi - lo;
                         close(fd);
-                        return true;
+                        return true; // Found, close and exit instantly
                     }
-                    state = 2;
+                    state = 2; // Not this one, discard the rest of the line
                 } else {
                     hi = (hi << 4) | (c <= '9' ? c - '0' : (c & 0xDF) - 'A' + 10);
                 }
             } else if (state == 2) {
                 if (c == '\n') {
-                    state = 0;
+                    state = 0; // End of line, reset for the next one
                     lo = 0; hi = 0;
                 }
             }
@@ -95,16 +97,18 @@ static bool module_base(const char* name, uint64_t* out_base) {
     return false;
 }
 
+// Overwrite a relro GOT slot (data, not code) -> no execmem/execmod.
 static bool got_redirect(uint64_t slot, void* newval, void** old) {
     void** got = (void**)slot;
     uintptr_t page = slot & ~(uintptr_t)0xfff;
     if (mprotect((void*)page, 0x1000, PROT_READ | PROT_WRITE) != 0) { LOGW("mprotect GOT %p failed", (void*)slot); return false; }
     if (old) *old = *got;
     *got = newval;
-    mprotect((void*)page, 0x1000, PROT_READ);
+    mprotect((void*)page, 0x1000, PROT_READ);   // restore relro (BIND_NOW: nothing else writes it)
     return true;
 }
 
+// ---- (1) chroma struct repair (called from our ARC wrapper) ----
 static void repair_struct(void* p) {
     if (!p) return;
     uint64_t mb, ms; if (!range_of((uint64_t)p, &mb, &ms)) return;
@@ -114,9 +118,9 @@ static void repair_struct(void* p) {
         if (is_buf(luma) && is_garbage(chroma)) {
             uint64_t lb, ls; if (!range_of(luma, &lb, &ls)) continue;
             uint64_t avail = (lb + ls) - luma;
-            uint64_t ysize = (avail * 2 / 3) & ~0xfffULL;
-            *(uint64_t*)(b + off + 8) = luma + ysize;
-            if (off == 0x40) {
+            uint64_t ysize = (avail * 2 / 3) & ~0xfffULL;        // Y-plane size (=0x1800000), page aligned
+            *(uint64_t*)(b + off + 8) = luma + ysize;            // plane[1] (UV) ptr
+            if (off == 0x40) {                                   // chroma pitch[1]@+0x64 = Y pitch[0]@+0x60
                 uint32_t yp = *(uint32_t*)(b + 0x60);
                 if (yp > 0 && *(uint32_t*)(b + 0x64) == 0) *(uint32_t*)(b + 0x64) = yp;
             }
@@ -124,40 +128,44 @@ static void repair_struct(void* p) {
         }
     }
 }
+// ARC_Turbo_RAW_Process takes x0-x7 PLUS ~7 stack args, so we CANNOT use a C wrapper (it would
+// drop the stack args). Instead: a naked asm trampoline that repairs the 3 output structs
+// (x1/x2/x3) then tail-branches to the real function with the FULL register+stack frame intact.
 extern "C" __attribute__((visibility("hidden"))) void* aps_real_arc = nullptr;
 extern "C" __attribute__((visibility("hidden"))) void aps_repair_structs(void* a1, void* a2, void* a3) {
     repair_struct(a1); repair_struct(a2); repair_struct(a3);
 }
-extern "C" void wrap_arc();
+extern "C" void wrap_arc();   // defined in asm below; what we hand back from dlsym
 __asm__(
 "    .text\n"
 "    .balign 4\n"
 "    .global wrap_arc\n"
 "    .type wrap_arc, %function\n"
 "wrap_arc:\n"
-"    stp x29, x30, [sp, #-0x60]!\n"
+"    stp x29, x30, [sp, #-0x60]!\n"   // our frame; sp moves DOWN, caller's stack args stay above
 "    mov x29, sp\n"
-"    stp x0, x1, [sp, #0x10]\n"
+"    stp x0, x1, [sp, #0x10]\n"       // save arg regs x0..x7
 "    stp x2, x3, [sp, #0x20]\n"
 "    stp x4, x5, [sp, #0x30]\n"
 "    stp x6, x7, [sp, #0x40]\n"
-"    str x8, [sp, #0x50]\n"
-"    ldr x0, [sp, #0x18]\n"
+"    str x8, [sp, #0x50]\n"           // save x8 (indirect result location register)
+"    ldr x0, [sp, #0x18]\n"           // aps_repair_structs(orig x1, orig x2, orig x3)
 "    ldr x1, [sp, #0x20]\n"
 "    ldr x2, [sp, #0x28]\n"
 "    bl  aps_repair_structs\n"
-"    ldp x0, x1, [sp, #0x10]\n"
+"    ldp x0, x1, [sp, #0x10]\n"       // restore arg regs
 "    ldp x2, x3, [sp, #0x20]\n"
 "    ldp x4, x5, [sp, #0x30]\n"
 "    ldp x6, x7, [sp, #0x40]\n"
-"    ldr x8, [sp, #0x50]\n"
-"    ldp x29, x30, [sp], #0x60\n"
+"    ldr x8, [sp, #0x50]\n"           // restore x8
+"    ldp x29, x30, [sp], #0x60\n"     // pop frame -> sp back to entry (stack args in place), x30 restored
 "    adrp x16, aps_real_arc\n"
 "    add  x16, x16, #:lo12:aps_real_arc\n"
 "    ldr  x16, [x16]\n"
-"    br   x16\n"
+"    br   x16\n"                      // tail-call real ARC; it returns straight to the caller
 );
 
+// ---- dlsym interposer in libAlgoInterface: swap ARC_Turbo_RAW_Process for our wrapper ----
 typedef void* (*dlsym_t)(void*, const char*);
 static dlsym_t g_real_dlsym = nullptr;
 static void* wrap_dlsym(void* handle, const char* symbol) {
@@ -170,6 +178,7 @@ static void* wrap_dlsym(void* handle, const char* symbol) {
     return res;
 }
 
+// ---- (2) p010LSB2MSBNeon length fix ----
 typedef void (*p010_t)(uint16_t*, uint16_t*, uint32_t, uint32_t, uint32_t, uint32_t);
 static p010_t g_real_p010 = nullptr;
 static void wrap_p010(uint16_t* dst, uint16_t* src, uint32_t w2, uint32_t w3, uint32_t w4, uint32_t w5) {
@@ -177,7 +186,7 @@ static void wrap_p010(uint16_t* dst, uint16_t* src, uint32_t w2, uint32_t w3, ui
         uint64_t sb, ss;
         if (range_of((uint64_t)src, &sb, &ss)) {
             uint64_t avail  = (sb + ss) - (uint64_t)src;
-            uint32_t new_w5 = (uint32_t)((avail * 2 / 3) / w4);
+            uint32_t new_w5 = (uint32_t)((avail * 2 / 3) / w4);   // w4*w5*1.5 == buffer
             if (new_w5 > 0 && new_w5 != w5) {
                 LOGI("p010 fix: avail=0x%llx w4=%u w5 %u->%u", (unsigned long long)avail, w4, w5, new_w5);
                 w5 = new_w5;
@@ -187,6 +196,7 @@ static void wrap_p010(uint16_t* dst, uint16_t* src, uint32_t w2, uint32_t w3, ui
     g_real_p010(dst, src, w2, w3, w4, w5);
 }
 
+// ---- install ----
 static bool g_p010_done = false, g_dlsym_done = false;
 static void try_install() {
     uint64_t base;
@@ -210,6 +220,8 @@ static void try_install() {
     }
 }
 static void* poller(void*) {
+    // 25ms cadence; dlsym(ARC) happens at the first turbo capture (seconds after libAlgoInterface
+    // loads), so this hooks well before it. ~10 min total budget.
     for (int i = 0; i < 24000 && !(g_p010_done && g_dlsym_done); i++) { try_install(); usleep(25 * 1000); }
     if (!(g_p010_done && g_dlsym_done)) LOGW("install incomplete: p010=%d dlsym=%d", g_p010_done, g_dlsym_done);
     return nullptr;
