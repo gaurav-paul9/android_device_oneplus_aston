@@ -19,7 +19,6 @@ from extract_utils.main import (
 
 namespace_imports = [
     'hardware/oplus',
-    'vendor/oplus/camera',  # for libapsfixup.so (APS turbo fix interposer)
     'hardware/pixelworks/interfaces',
     'hardware/qcom-caf/sm8550',
     'vendor/oneplus/sm8550-common',
@@ -37,6 +36,7 @@ lib_fixups: lib_fixups_user_type = {
     (
         'libhwconfigurationutil',
         'vendor.oplus.hardware.cammidasservice-V1-ndk',
+        'vendor.oplus.hardware.cameraextension-V1-ndk',
     ): lib_fixup_vendor_suffix,
 }
 
@@ -50,10 +50,10 @@ blob_fixups: blob_fixups_user_type = {
         .regex_replace('(NXPLOG_.*_LOGLEVEL)=0x03', '\\1=0x02')
         .regex_replace('NFC_DEBUG_ENABLED=1', 'NFC_DEBUG_ENABLED=0'),
     'odm/lib64/libAlgoProcess.so': blob_fixup()
-        .replace_needed('android.hardware.graphics.common-V3-ndk.so', 'android.hardware.graphics.common-V7-ndk.so')
-        # APS turbo soft/GREEN/crash fix: DT_NEEDED libapsfixup (vendor/oplus/camera/configs/apsfixup/).
-        # Must be built with SM8550-correct offsets (readelf analysis of OOS dump needed).
-        .add_needed('libapsfixup.so'),
+        .replace_needed('android.hardware.graphics.common-V3-ndk.so', 'android.hardware.graphics.common-V7-ndk.so'),
+        # APS turbo fix is disabled — GOT offsets were SM8850 placeholders.
+        # If APS burst capture crashes, set SM8550 offsets then uncomment:
+        # .add_needed('libapsfixup.so'),
     (
         'odm/lib64/libCOppLceTonemapAPI.so',
         'odm/lib64/libSuperRaw.so',
