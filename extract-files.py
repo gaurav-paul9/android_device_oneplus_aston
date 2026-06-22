@@ -18,6 +18,7 @@ from extract_utils.main import (
 )
 
 namespace_imports = [
+    'device/oneplus/aston',  # for libapsfixup.so (APS turbo fix interposer)
     'hardware/oplus',
     'hardware/pixelworks/interfaces',
     'hardware/qcom-caf/sm8550',
@@ -49,7 +50,10 @@ blob_fixups: blob_fixups_user_type = {
         .regex_replace('(NXPLOG_.*_LOGLEVEL)=0x03', '\\1=0x02')
         .regex_replace('NFC_DEBUG_ENABLED=1', 'NFC_DEBUG_ENABLED=0'),
     'odm/lib64/libAlgoProcess.so': blob_fixup()
-        .replace_needed('android.hardware.graphics.common-V3-ndk.so', 'android.hardware.graphics.common-V7-ndk.so'),
+        .replace_needed('android.hardware.graphics.common-V3-ndk.so', 'android.hardware.graphics.common-V7-ndk.so')
+        # APS turbo soft/GREEN/crash fix: DT_NEEDED our P010 chroma interposer.
+        # (device/oneplus/aston/apsfixup). Must be built with SM8550-correct offsets.
+        .add_needed('libapsfixup.so'),
     (
         'odm/lib64/libCOppLceTonemapAPI.so',
         'odm/lib64/libSuperRaw.so',
@@ -67,6 +71,14 @@ blob_fixups: blob_fixups_user_type = {
         .clear_symbol_version('AHardwareBuffer_lock')
         .clear_symbol_version('AHardwareBuffer_release')
         .clear_symbol_version('AHardwareBuffer_unlock'),
+    (
+        'odm/lib64/libAncHumanSegFigureFusion.so',
+        'odm/lib64/libEIS.so',
+        'odm/lib64/libEISLive.so',
+        'odm/lib64/libOPAlgoCamAiBeautyFaceRetouchCn.so',
+        'odm/lib64/libOPAlgoCamAiUnifySkin.so',
+    ): blob_fixup()
+        .clear_symbol_version('AHardwareBuffer_acquire'),
     'odm/lib64/libarcsoft_high_dynamic_range_v4.so': blob_fixup()
         .clear_symbol_version('remote_handle_close')
         .clear_symbol_version('remote_handle_invoke')
