@@ -112,6 +112,13 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('libtinyxml2.so', 'libtinyxml2-v34.so'),
     'vendor/etc/libnfc-nci.conf': blob_fixup()
         .regex_replace('NFC_DEBUG_ENABLED=1', 'NFC_DEBUG_ENABLED=0'),
+    (
+        'odm/lib64/libCOppLceTonemapAPI.so',
+        'odm/lib64/libSuperRaw.so',
+        'odm/lib64/libYTCommon.so',
+        'odm/lib64/libyuv2.so',
+    ): blob_fixup()
+        .remove_needed('libstdc++'),
     'odm/lib64/libsharebuffer_impl.so': blob_fixup()
         .replace_needed('libutils.so', 'libutils-stock.so')
         .replace_needed('libui.so', 'libui-stock.so'),
