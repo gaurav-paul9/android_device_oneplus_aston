@@ -119,11 +119,7 @@ blob_fixups: blob_fixups_user_type = {
         'odm/lib64/libyuv2.so',
     ): blob_fixup()
         .remove_needed('libstdc++.so'),
-    'odm/lib64/libsharebuffer_impl.so': blob_fixup()
-        .replace_needed('libutils.so', 'libutils-stock.so')
-        .replace_needed('libui.so', 'libui-stock.so'),
-    'vendor/lib64/libui-stock.so': blob_fixup()
-        .replace_needed('android.hardware.graphics.common-V5-ndk.so', 'android.hardware.graphics.common-V7-ndk.so'),
+
 }  # fmt: skip
 
 module = ExtractUtilsModule(
