@@ -1357,9 +1357,6 @@ odm/etc/izat.conf
 system_ext/etc/horae/horae.conf
 system_ext/etc/horae/horae_SM8550.conf
 
-# Neural networks
-odm/lib64/libaiboost_te.so;FIX_SONAME
-
 # NFC configs
 odm/etc/nfc/libnfc-mtp-SN220.conf_23801:odm/etc/libnfc-mtp-SN220.conf_23801
 odm/etc/nfc/libnfc-mtp-SN220.conf_23861:odm/etc/libnfc-mtp-SN220.conf_23861
