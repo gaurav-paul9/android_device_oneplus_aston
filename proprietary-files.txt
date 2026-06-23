@@ -1054,12 +1054,9 @@ odm/lib64/libwatermark_photo.so
 odm/lib64/libwrapper_te.so
 odm/lib64/libyuv2.so
 odm/lib64/libyuvwrapper.so
-odm/lib64/vendor.oplus.hardware.camera_rfi-V1-ndk.so
 odm/lib64/vendor.oplus.hardware.camera_rfi-V1-service-impl.so
 odm/lib64/vendor.oplus.hardware.cameraextension-V1-service-impl.so
-odm/lib64/vendor.oplus.hardware.cammidasservice-V1-ndk.so
 odm/lib64/vendor.oplus.hardware.sendextcamcmd-V1-service-impl.so
-odm/lib64/vendor.oplus.hardware.sendextcamcmd-V2-ndk.so
 system/lib64/libziparchive.so:odm/lib64/libziparchive_odm.so;FIX_SONAME
 vendor/bin/hw/vendor.qti.camera.provider-service_64
 vendor/etc/init/vendor.qti.camera.provider-service_64.rc
@@ -1243,7 +1240,6 @@ vendor/lib64/libthreadutils.so
 vendor/lib64/libubifocus.so
 vendor/lib64/libvideoml.so
 vendor/lib64/vendor.oplus.hardware.cameraextension-V1-ndk.so
-vendor/lib64/vendor.oplus.hardware.cammidasservice-V1-ndk.so;MODULE_SUFFIX=_vendor
 vendor/lib64/vendor.oplus.hardware.commondcs-V1-ndk_platform.so
 vendor/lib64/vendor.qti.hardware.camera.aon-service-impl.so
 vendor/lib64/vendor.qti.hardware.camera.postproc@1.0-service-impl.so
@@ -1433,19 +1429,11 @@ odm/etc/wifi/kiwi/regdb.bin
 odm/vendor/etc/wifi/WCNSS_qcom_cfg.ini
 
 # Camera
-vendor/lib64/libutils.so:vendor/lib64/libutils-stock.so;FIX_SONAME
-vendor/lib64/libui.so:vendor/lib64/libui-stock.so;FIX_SONAME
 
 # Dolby Vision Configs & Libs
-odm/lib64/vendor.dolby.dvs-V1-ndk.so
-odm/etc/dolby/display/dolby_vision.cfg
-odm/etc/dolby/dolby_vision.cfg
+system/lib64/vendor.dolby.dvs-V1-ndk.so:odm/lib64/vendor.dolby.dvs-V1-ndk.so
 odm/etc/media_codecs_dolby_vision.xml
-my_product/etc/dolby_vision.cfg:product/etc/dolby_vision.cfg
-my_product/lib64/libdolbyeffect_4.1.so:product/lib64/libdolbyeffect_4.1.so
-my_product/lib64/liboplusdolbyeffect_4.1.so:product/lib64/liboplusdolbyeffect_4.1.so
+odm/etc/dolby_vision.cfg
 system/etc/dolby_vision.cfg
-vendor/etc/dolby_vision.cfg
-vendor/persist/display/dolby_vision.cfg
 
 # vi:ft=conf
