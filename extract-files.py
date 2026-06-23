@@ -27,6 +27,8 @@ namespace_imports = [
     # libAlgoProcess.so gets a DT_NEEDED on libapsfixup (the APS turbo fix interposer), which is
     # defined in the device/oneplus/aston namespace -- import it so the blob can resolve it.
     'device/oneplus/aston',
+    # Camera OPlus NDK libs (cammidasservice, camera_rfi, cameraextension, etc.)
+    'vendor/oplus/camera/camera',
 ]
 
 
