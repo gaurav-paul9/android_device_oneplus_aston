@@ -896,7 +896,7 @@ odm/lib64/libAncSegBaseSdk.so
 odm/lib64/libAncSegMultiSdk.so
 odm/lib64/libAncSegmentSdk.so
 odm/lib64/libBokehPre.so
-odm/lib64/libCOppLceTonemapAPI.so
+odm/lib64/libCOppLceTonemapAPI.so;DISABLE_CHECKELF
 odm/lib64/libCS.so
 odm/lib64/libCaptureBokeh.so
 odm/lib64/libDeVIS.so
@@ -934,7 +934,7 @@ odm/lib64/libSnpeCpu.so;FIX_SONAME
 odm/lib64/libSnpeGpu.so;FIX_SONAME
 odm/lib64/libSnpeHtpPrepare.so
 odm/lib64/libSnpeHtpV73Stub.so
-odm/lib64/libSuperRaw.so
+odm/lib64/libSuperRaw.so;DISABLE_CHECKELF
 odm/lib64/libSuperTextWrapper.so
 odm/lib64/libUpScale.so
 odm/lib64/libVDBayerHDR.so
@@ -944,7 +944,7 @@ odm/lib64/libVDSuperPhotoAPI.so;FIX_SONAME
 odm/lib64/libVideoEnhance.so
 odm/lib64/libWaterMark.so
 odm/lib64/libXDocProcessSDK.so
-odm/lib64/libYTCommon.so
+odm/lib64/libYTCommon.so;DISABLE_CHECKELF
 odm/lib64/lib_rectify.so
 odm/lib64/libaecCustom.so
 odm/lib64/libaecCustomParamParser.so
@@ -1052,7 +1052,7 @@ odm/lib64/libtriplecam_optical_zoom_control.so
 odm/lib64/libtriplecam_video_optical_zoom.so
 odm/lib64/libwatermark_photo.so
 odm/lib64/libwrapper_te.so
-odm/lib64/libyuv2.so
+odm/lib64/libyuv2.so;DISABLE_CHECKELF
 odm/lib64/libyuvwrapper.so
 odm/lib64/vendor.oplus.hardware.camera_rfi-V1-ndk.so
 odm/lib64/vendor.oplus.hardware.camera_rfi-V1-service-impl.so
