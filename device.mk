@@ -17,7 +17,15 @@ PRODUCT_COPY_FILES += \
 TARGET_SCREEN_HEIGHT := 2780
 TARGET_SCREEN_WIDTH := 1264
 
+DEXPREOPT_DISABLED_MODULES += \
+    com.oplus.camera.unit.sdk \
+    com.oplus.camera.unit.sdk.adapter
+
+
 # Display
+PRODUCT_PACKAGES += \
+    OplusLtpo
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/display/displayconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_id_4630946607878435459.xml
 
@@ -26,10 +34,13 @@ PRODUCT_SYSTEM_PROPERTIES += \
 
 $(call soong_config_set,qtidisplay,pxlw_vendor_namespace,vendor/oneplus/aston)
 $(call soong_config_set_bool,qtidisplay,pxlw_hw_iris7,true)
-$(call soong_config_set,surfaceflinger,frame_rate_category_high,120)
-$(call soong_config_set,surfaceflinger,frame_rate_category_min,1)
+
+# Fingerprint
+TARGET_HAS_UDFPS := true
 
 # IR
+$(call inherit-product, vendor/oneplus/ir/config.mk)
+
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.consumerir.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/android.hardware.consumerir.xml
 
@@ -41,7 +52,7 @@ $(call soong_config_set,surfaceflinger,udfps_lib,//hardware/oplus:libudfps_exten
 $(call soong_config_set_bool,qtidisplay,oplus_udfps,true)
 
 # LiveDisplay
-$(call soong_config_set_bool,OPLUS_LINEAGE_LIVEDISPLAY_HAL,ENABLE_AF,true)
+$(call soong_config_set_bool,OPLUS_LINEAGE_LIVEDISPLAY_HAL,ENABLE_AF,false)
 $(call soong_config_set_bool,OPLUS_LINEAGE_LIVEDISPLAY_HAL,ENABLE_SE,false)
 
 # Overlays
@@ -54,10 +65,11 @@ PRODUCT_PACKAGES += \
     OPlusFrameworksResTarget \
     OPlusSettingsProviderResTarget \
     OPlusSettingsResTarget \
-    OPlusSystemUIResTarget
+    OPlusSystemUIResTarget \
+    OPlusWifiResTarget
 
 # Power
-$(call soong_config_set,power_libperfmgr,mode_extension_lib,//$(LOCAL_PATH):libperfmgr-ext-aston)
+$(call soong_config_set,qtipower,mode_ext_lib,power-ext-oplus)
 
 # Regional properties
 PRODUCT_COPY_FILES += \
@@ -97,3 +109,11 @@ $(call inherit-product, device/oneplus/sm8550-common/common.mk)
 
 # Inherit from the proprietary files makefile.
 $(call inherit-product, vendor/oneplus/aston/aston-vendor.mk)
+
+# OPlus Camera (global 12R stack)
+$(call inherit-product-if-exists, vendor/oplus/camera/camera-vendor.mk)
+
+# APS P010 over-walk fix (GOT-interposer loaded into com.oplus.camera via libAlgoProcess.so
+# DT_NEEDED — see device/oneplus/astonc/apsfixup + extract-files.py .add_needed).
+PRODUCT_PACKAGES += \
+    libapsfixup
