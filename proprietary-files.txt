@@ -1185,26 +1185,26 @@ vendor/lib64/libaidenoiser.so
 vendor/lib64/libaidenoiserv2.so
 vendor/lib64/libbitmlengine.so
 vendor/lib64/libbitmlenginev2.so
-# vendor/lib64/libcamerapostproc.so
-# vendor/lib64/libcamxcommonutils.so
-# vendor/lib64/libcamxexternalformatutils.so
-# vendor/lib64/libcamxfacialfeatures.so
-# vendor/lib64/libcamxfdalgo.so
-# vendor/lib64/libcamxfdengine.so
-# vendor/lib64/libcamxhwnodecontext.so
-# vendor/lib64/libcamxifestriping.so
-# vendor/lib64/libcamximageformatutils.so
-# vendor/lib64/libcamxjson.so
-# vendor/lib64/libcamxqsatalgo.so
-# vendor/lib64/libcamxsettingsmanager.so
-# vendor/lib64/libcamxstatscore.so
-# vendor/lib64/libcamxswispiqmodule.so
-# vendor/lib64/libcamxswprocessalgo.so
-# vendor/lib64/libcamxtintlessalgo.so
-# vendor/lib64/libchifeature2.so
-# vendor/lib64/libchilog.so
-# vendor/lib64/libcom.qti.chinodeutils.so
-# vendor/lib64/libcommonchiutils.so
+vendor/lib64/libcamerapostproc.so
+vendor/lib64/libcamxcommonutils.so
+vendor/lib64/libcamxexternalformatutils.so
+vendor/lib64/libcamxfacialfeatures.so
+vendor/lib64/libcamxfdalgo.so
+vendor/lib64/libcamxfdengine.so
+vendor/lib64/libcamxhwnodecontext.so
+vendor/lib64/libcamxifestriping.so
+vendor/lib64/libcamximageformatutils.so
+vendor/lib64/libcamxjson.so
+vendor/lib64/libcamxqsatalgo.so
+vendor/lib64/libcamxsettingsmanager.so
+vendor/lib64/libcamxstatscore.so
+vendor/lib64/libcamxswispiqmodule.so
+vendor/lib64/libcamxswprocessalgo.so
+vendor/lib64/libcamxtintlessalgo.so
+vendor/lib64/libchifeature2.so
+vendor/lib64/libchilog.so
+vendor/lib64/libcom.qti.chinodeutils.so
+vendor/lib64/libcommonchiutils.so
 vendor/lib64/libhdr10plus.so
 vendor/lib64/libhdr_stub.so
 vendor/lib64/libhme.so
