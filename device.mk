@@ -16,11 +16,6 @@ PRODUCT_COPY_FILES += \
 TARGET_SCREEN_HEIGHT := 2780
 TARGET_SCREEN_WIDTH := 1264
 
-DEXPREOPT_DISABLED_MODULES += \
-    com.oplus.camera.unit.sdk \
-    com.oplus.camera.unit.sdk.adapter
-
-
 # Display
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/display/displayconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_id_4630946607878435459.xml
