@@ -1,6 +1,6 @@
-#!/usr/bin/env -S PYTHONPATH=../../../tools/extract-utils:../../../hardware/oplus/extract-utils-ext python3
+#!/usr/bin/env -S PYTHONPATH=../../../tools/extract-utils python3
 #
-# SPDX-FileCopyrightText: The LineageOS Project
+# SPDX-FileCopyrightText: 2024 The LineageOS Project
 # SPDX-License-Identifier: Apache-2.0
 #
 
@@ -15,9 +15,6 @@ from extract_utils.fixups_lib import (
 from extract_utils.main import (
     ExtractUtils,
     ExtractUtilsModule,
-)
-from extract_utils_oplus import (
-    add_generated_thermal_engine_config,
 )
 
 namespace_imports = [
@@ -41,12 +38,17 @@ lib_fixups: lib_fixups_user_type = {
     **lib_fixups,
     (
         'libhwconfigurationutil',
+        'vendor.oplus.hardware.cammidasservice-V1-ndk',
     ): lib_fixup_vendor_suffix,
 }
 
 blob_fixups: blob_fixups_user_type = {
-    'odm/etc/camera/CameraHWConfiguration.config': blob_fixup()
-        .regex_replace('SystemCamera =  0;  0;  0;  1;  0;  1;', 'SystemCamera =  0;  0;  0;  0;  0;  0;'),
+    (
+        'odm/etc/libnfc-mtp-SN220.conf_23801',
+        'odm/etc/libnfc-mtp-SN220.conf_23861'
+    ): blob_fixup()
+        .regex_replace('(NXPLOG_.*_LOGLEVEL)=0x03', '\\1=0x02')
+        .regex_replace('NFC_DEBUG_ENABLED=1', 'NFC_DEBUG_ENABLED=0'),
     'odm/lib64/libAlgoProcess.so': blob_fixup()
         .replace_needed('android.hardware.graphics.common-V3-ndk.so', 'android.hardware.graphics.common-V7-ndk.so')
         # Pull our GOT-interposer into com.oplus.camera so it can clamp the P010 LSB->MSB
@@ -74,7 +76,6 @@ blob_fixups: blob_fixups_user_type = {
     ): blob_fixup()
         .replace_needed('libstdc++.so', 'libstdc++_vendor.so'),
     (
-        'odm/lib64/libEISLive.so',
         'odm/lib64/libHIS.so',
         'odm/lib64/libOGLManager.so',
         'odm/lib64/libOPAlgoCamFaceBeautyCap.so'
@@ -110,9 +111,6 @@ blob_fixups: blob_fixups_user_type = {
     ): blob_fixup()
         .replace_needed('android.hardware.graphics.allocator-V1-ndk.so', 'android.hardware.graphics.allocator-V2-ndk.so'),
     'vendor/etc/libnfc-nci.conf': blob_fixup()
-        .regex_replace('NFC_DEBUG_ENABLED=1', 'NFC_DEBUG_ENABLED=0'),
-    'vendor/etc/libnfc-nxp.conf': blob_fixup()
-        .regex_replace('(NXPLOG_.*_LOGLEVEL)=0x03', '\\1=0x02')
         .regex_replace('NFC_DEBUG_ENABLED=1', 'NFC_DEBUG_ENABLED=0')
 }  # fmt: skip
 
@@ -125,13 +123,6 @@ module = ExtractUtilsModule(
     add_firmware_proprietary_file=True,
 )
 
-add_generated_thermal_engine_config(
-    module,
-    horae_target_config='system_ext/etc/horae/horae_SM8550.conf',
-)
-
 if __name__ == '__main__':
-    utils = ExtractUtils.device_with_common(
-        module, 'sm8550-common', module.vendor
-    )
+    utils = ExtractUtils.device(module)
     utils.run()
