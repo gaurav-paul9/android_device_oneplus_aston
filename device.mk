@@ -61,6 +61,10 @@ PRODUCT_PACKAGES += \
     OPlusSettingsResTarget \
     OPlusSystemUIResTarget
 
+# Device Settings
+PRODUCT_PACKAGES += \
+    DeviceSettings
+
 # Power
 $(call soong_config_set,power_libperfmgr,mode_extension_lib,//$(LOCAL_PATH):libperfmgr-ext-aston)
 
