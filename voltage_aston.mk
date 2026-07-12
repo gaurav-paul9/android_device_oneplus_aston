@@ -12,24 +12,16 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/oneplus/aston/device.mk)
 
 # Inherit some common Lineage stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+$(call inherit-product, vendor/voltage/config/common_full_phone.mk)
 
-# Lunaris-Specific Flags
-PRODUCT_NO_CAMERA:= false
+
+# Voltage Specific Flags
 TARGET_BOOT_ANIMATION_RES := 1080
-TARGET_DISABLE_EPPE := true
-WITH_GMS := true
-WITH_BCR := true
-TARGET_SUPPORTS_QUICK_TAP := true
-TARGET_CUSTOM_UDFPS := true
-TARGET_INCLUDE_LIVE_WALLPAPERS := true
-TARGET_SUPPORTS_GOOGLE_FILES := true
-TARGET_INCLUDE_WEATHER := true
-TARGET_SUPPORTS_GOOGLE_TELEPHONY := false
-USE_REALITY_ENGINE := true
-SURFACE_FLINGER_BOOST := true
+TARGET_FACE_UNLOCK_SUPPORTED := true
+VOLTAGE_BUILD_TYPE := UNOFFICIAL
+EXTRA_UDFPS_ANIMATIONS := true
 
-PRODUCT_NAME := lineage_aston
+PRODUCT_NAME := voltage_aston
 PRODUCT_DEVICE := aston
 PRODUCT_MANUFACTURER := OnePlus
 PRODUCT_BRAND := OnePlus
@@ -45,4 +37,3 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     SystemDevice=OP5D35L1 \
     SystemName=CPH2585
 
-$(call inherit-product, vendor/lunaris-priv/keys/keys.mk)
