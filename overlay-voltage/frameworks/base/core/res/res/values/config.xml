@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <!-- Whether device has an alert slider. -->
+    <bool name="config_hasAlertSlider">true</bool>
+
+    <string-array name="config_deviceKeyHandlerLibs" translatable="false">
+        <item>/system_ext/priv-app/DeviceSettings/DeviceSettings.apk</item>
+        <item>/system_ext/priv-app/Settings/Settings.apk</item>
+    </string-array>
+    <string-array name="config_deviceKeyHandlerClasses" translatable="false">
+        <item>org.lineageos.device.settings.KeyHandler</item>
+        <item>com.android.touch.gestures.KeyHandler</item>
+    </string-array>
+    <bool name="config_supportsChargingControl">false</bool>
+</resources>
