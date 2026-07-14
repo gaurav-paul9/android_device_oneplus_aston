@@ -17,5 +17,6 @@
 <permissions>
     <privapp-permissions package="org.lineageos.device.settings">
         <permission name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+        <permission name="voltageos.permission.HARDWARE_ABSTRACTION_ACCESS"/>
     </privapp-permissions>
 </permissions>
