@@ -33,6 +33,8 @@ $(call soong_config_set,qtidisplay,pxlw_vendor_namespace,vendor/oneplus/aston)
 $(call soong_config_set_bool,qtidisplay,pxlw_hw_iris7,true)
 
 # IR
+$(call inherit-product, vendor/oneplus/ir/config.mk)
+
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.consumerir.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/android.hardware.consumerir.xml
 
