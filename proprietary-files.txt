@@ -1,5 +1,5 @@
 ## All proprietary files from this list, unless pinned and noted otherwise,
-## are from OnePlus 12R (CPH2585_16.0.5.702(EX01)).
+## are from OnePlus 12R (CPH2585_16.0.3.500(EX01)).
 
 # ACDB
 odm/etc/acdbdata/FTM/acdb_cal.acdb
@@ -73,7 +73,7 @@ odm/etc/lvacfs_params/2mic/audiozoom_7.txt
 odm/etc/lvacfs_params/2mic/audiozoom_8.txt
 odm/etc/lvacfs_params/2mic/audiozoom_9.txt
 
-# Camera (from CPH2585_16.0.1.400)
+# Camera (from CPH2609_16.0.2.400)
 odm/bin/hw/vendor.oplus.hardware.cammidasservice-V1-service|9bd177988ec81f7722799abd5666edf945735c1d
 odm/etc/camera/anc/fusion_model|c9393cbc084e9a7992b88cffed18ce0aeed2ccb2
 odm/etc/camera/anc/fusion_model_post|8663703f930195a62b417e385931f857323454f9
@@ -1042,6 +1042,7 @@ odm/lib64/libremosaiclib_s5kjn1.so;FIX_SONAME|01d4d61cc30b9a0ec599946c98c6247145
 odm/lib64/librmsclib1.so|c3065ceaaab55bb2b9c5fcc72de332b9282547b4
 odm/lib64/libsaveshaderbin.so|589a6fbd6d8220e074f575d1cff38fea4889c1a8
 odm/lib64/libsdk_sr.so|05cf8f1cf72be53426e3e57608b240c5783a74fe
+odm/lib64/libsdk_sr_ref.so|75b6b8cc4df75533c7ed5aab03f789c5c2b29dfc
 odm/lib64/libsharebuffer.so|3bc7f3e0d3870800d6059a2e6c06a27636817f8d
 odm/lib64/libsharebuffer_impl.so|1ab2533927b04d6a95dede6f9f6d9078bbe84a32|1bc5766105e2d4b91366e60ebab269e531175ab3
 odm/lib64/libsnpe_loader.so|3c14e2db13de616cc8986364682558dd2db6fd9e
@@ -1057,9 +1058,14 @@ odm/lib64/libwatermark_photo.so|59cce4212fb674ae621806ba3b1cc39759c5bd70
 odm/lib64/libwrapper_te.so|37b60bf9339e76f4532bd7c3ba483d770614cee8
 odm/lib64/libyuv2.so|120a7fe2bccfce7b00895c8295f5060c5695e7b5|745a7e72cf4ca6f0c7e7b67f5b4554e2b6459cd6
 odm/lib64/libyuvwrapper.so|24ebb4141d4407026f91147fd6378114de020bb6
+odm/lib64/sr_models.bin:odm/lib64/sr_models.so|4fcaa67c3d15760a87860138a2c5f87092c2796a
+odm/lib64/sr_ref_models.bin:odm/lib64/sr_ref_models.so|70de3fd188b6fef0c96bb86f70da8a31e2d04c31
+odm/lib64/vendor.oplus.hardware.camera_rfi-V1-ndk.so|6a947ef646d5dea3e37cfede26565f0820279a75
 odm/lib64/vendor.oplus.hardware.camera_rfi-V1-service-impl.so|f1a785e71bb6783558ab701bc03e58915c54bbb2
 odm/lib64/vendor.oplus.hardware.cameraextension-V1-service-impl.so|ebf22c1f210725179dd7eeb53f4089be43605a8f
+odm/lib64/vendor.oplus.hardware.cammidasservice-V1-ndk.so|8c23f795b93f2fcfc740111433e409def10f843b
 odm/lib64/vendor.oplus.hardware.sendextcamcmd-V1-service-impl.so|63f211a894cec7aedf64b95b5d559f1a90a51a0c
+odm/lib64/vendor.oplus.hardware.sendextcamcmd-V2-ndk.so|9c8990c26d352ee818a46b9a125dfd0e9623ee62
 system/lib64/libziparchive.so:odm/lib64/libziparchive_odm.so;FIX_SONAME|d2c5ad614b1b33df1183d52ed7ce8dd81833d63f|108bcd2652049b266998f2b0c9a97adbbea972ba
 vendor/bin/hw/vendor.qti.camera.provider-service_64|d888dd1ab4a71234d53fc680dd9b90c2109a7fa6|99480809afe7a4b4ffedad581a8a1d1c4ca72a1d
 vendor/etc/init/vendor.qti.camera.provider-service_64.rc|5fe7cb8283fc021da43b29eb358eb5def37a63d8
@@ -1242,13 +1248,11 @@ vendor/lib64/libtfestriping.so|2c57362cb64b8bf464d93356d8854a79e810c9c6
 vendor/lib64/libthreadutils.so|da4a58bc776000e862cfde9943282af708be61d2
 vendor/lib64/libubifocus.so|32385ac18ba26b9f20ed3cf9682801e92d330c22
 vendor/lib64/libvideoml.so|eaf528c7038d4219f43f5696346f222fa66942ea
+vendor/lib64/vendor.oplus.hardware.cameraextension-V1-ndk.so|9d991dd161bce64ae5487a5a4b6298b7928c2291
+vendor/lib64/vendor.oplus.hardware.cammidasservice-V1-ndk.so;MODULE_SUFFIX=_vendor|8c23f795b93f2fcfc740111433e409def10f843b
+vendor/lib64/vendor.oplus.hardware.commondcs-V1-ndk_platform.so|34d9bd68e99e02f08f45cb14c5cda8487bf6a668
 vendor/lib64/vendor.qti.hardware.camera.aon-service-impl.so|534218a04cf3efdc6dcc93789177ce7211ca6d88
 vendor/lib64/vendor.qti.hardware.camera.postproc@1.0-service-impl.so|ac038e09cf91769f52d72e150b9f82125f6d0a77
-
-# Camera firmware
-vendor/firmware/CAMERA_ICP.b20
-vendor/firmware/CAMERA_ICP.mbn
-vendor/firmware/CAMERA_ICP.mdt
 
 # Charger firmware
 odm/firmware/fastchg/23861/charging_hyper_mode_config.txt
@@ -1316,11 +1320,6 @@ vendor/etc/ltm_config_AA551_P_3_A0004_dsc_cmd_mode_panel.xml
 my_product/etc/permissions/EuiccGoogle_grant_permissions_list.xml:product/etc/permissions/privapp-permissions-euiccgoogle.xml
 my_product/priv-app/EuiccGoogle/EuiccGoogle.apk:product/priv-app/EuiccGoogle/EuiccGoogle.apk;PRESIGNED
 
-# EVA firmware
-vendor/firmware/evass.b19
-vendor/firmware/evass.mbn
-vendor/firmware/evass.mdt
-
 # Fingerprint firmware
 odm/vendor/firmware/uff_gx.b00
 odm/vendor/firmware/uff_gx.b01
@@ -1342,21 +1341,6 @@ odm/vendor/firmware/uff_spi.b06
 odm/vendor/firmware/uff_spi.b07
 odm/vendor/firmware/uff_spi.b08
 odm/vendor/firmware/uff_spi.mdt
-
-# Graphics (Adreno firmware)
-vendor/firmware/a740_zap.b02
-vendor/firmware/a740_zap.mbn
-vendor/firmware/a740_zap.mdt
-
-# GNSS
-odm/etc/izat.conf
-
-# Horae
-system_ext/etc/horae/horae.conf
-system_ext/etc/horae/horae_SM8550.conf
-
-# Neural networks
-odm/lib64/libaiboost_te.so;FIX_SONAME
 
 # NFC configs
 odm/etc/nfc/libnfc-mtp-SN220.conf_23801:odm/etc/libnfc-mtp-SN220.conf_23801
@@ -1418,9 +1402,6 @@ odm/firmware/ufs/SAMSUNG-KLUGGARHHD-B0G1.bin
 odm/firmware/ufs/SKhynix-HN8T274EJKX130.bin
 odm/firmware/ufs/move_target_ufs_fw_to_oplusreserve1.sh
 odm/firmware/ufs/ufs_version_config.xml
-
-# VPU firmware
-vendor/firmware/vpu30_4v.mbn
 
 # WiFi
 odm/etc/wifi/kiwi/bdwlan.b0a
