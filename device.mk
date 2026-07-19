@@ -21,6 +21,10 @@ DEXPREOPT_DISABLED_MODULES += \
     com.oplus.camera.unit.sdk \
     com.oplus.camera.unit.sdk.adapter
 
+# Camera (SR model .bin names, see Android.bp)
+PRODUCT_PACKAGES += \
+    sr_models.bin_symlink \
+    sr_ref_models.bin_symlink
 
 # Display
 PRODUCT_COPY_FILES += \
