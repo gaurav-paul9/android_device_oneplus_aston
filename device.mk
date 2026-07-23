@@ -113,3 +113,6 @@ PRODUCT_PACKAGES += \
 
 # OPLUS Fusion Light Sensor
 $(call inherit-product-if-exists, vendor/oneplus/fusion/fusion-vendor.mk)
+
+# Lindroid: Linux on Droid
+$(call inherit-product, vendor/lindroid/lindroid.mk)
