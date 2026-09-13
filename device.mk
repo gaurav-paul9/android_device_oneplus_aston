@@ -111,4 +111,4 @@ PRODUCT_PACKAGES += \
     libapsfixup
 
 # OPLUS Fusion Light Sensor
-$(call inherit-product-if-exists, vendor/oneplus/fusion/fusion-vendor.mk)
+$(call inherit-product, vendor/oneplus/fusion/fusion-vendor.mk)
