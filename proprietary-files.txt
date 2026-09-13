@@ -1060,12 +1060,9 @@ odm/lib64/libyuv2.so|120a7fe2bccfce7b00895c8295f5060c5695e7b5|745a7e72cf4ca6f0c7
 odm/lib64/libyuvwrapper.so|24ebb4141d4407026f91147fd6378114de020bb6
 odm/lib64/sr_models.bin:odm/lib64/sr_models.so|4fcaa67c3d15760a87860138a2c5f87092c2796a
 odm/lib64/sr_ref_models.bin:odm/lib64/sr_ref_models.so|70de3fd188b6fef0c96bb86f70da8a31e2d04c31
-odm/lib64/vendor.oplus.hardware.camera_rfi-V1-ndk.so|6a947ef646d5dea3e37cfede26565f0820279a75
 odm/lib64/vendor.oplus.hardware.camera_rfi-V1-service-impl.so|f1a785e71bb6783558ab701bc03e58915c54bbb2
 odm/lib64/vendor.oplus.hardware.cameraextension-V1-service-impl.so|ebf22c1f210725179dd7eeb53f4089be43605a8f
-odm/lib64/vendor.oplus.hardware.cammidasservice-V1-ndk.so|8c23f795b93f2fcfc740111433e409def10f843b
 odm/lib64/vendor.oplus.hardware.sendextcamcmd-V1-service-impl.so|63f211a894cec7aedf64b95b5d559f1a90a51a0c
-odm/lib64/vendor.oplus.hardware.sendextcamcmd-V2-ndk.so|9c8990c26d352ee818a46b9a125dfd0e9623ee62
 system/lib64/libziparchive.so:odm/lib64/libziparchive_odm.so;FIX_SONAME|d2c5ad614b1b33df1183d52ed7ce8dd81833d63f|108bcd2652049b266998f2b0c9a97adbbea972ba
 vendor/bin/hw/vendor.qti.camera.provider-service_64|d888dd1ab4a71234d53fc680dd9b90c2109a7fa6|99480809afe7a4b4ffedad581a8a1d1c4ca72a1d
 vendor/etc/init/vendor.qti.camera.provider-service_64.rc|5fe7cb8283fc021da43b29eb358eb5def37a63d8
@@ -1248,9 +1245,6 @@ vendor/lib64/libtfestriping.so|2c57362cb64b8bf464d93356d8854a79e810c9c6
 vendor/lib64/libthreadutils.so|da4a58bc776000e862cfde9943282af708be61d2
 vendor/lib64/libubifocus.so|32385ac18ba26b9f20ed3cf9682801e92d330c22
 vendor/lib64/libvideoml.so|eaf528c7038d4219f43f5696346f222fa66942ea
-vendor/lib64/vendor.oplus.hardware.cameraextension-V1-ndk.so|9d991dd161bce64ae5487a5a4b6298b7928c2291
-vendor/lib64/vendor.oplus.hardware.cammidasservice-V1-ndk.so;MODULE_SUFFIX=_vendor|8c23f795b93f2fcfc740111433e409def10f843b
-vendor/lib64/vendor.oplus.hardware.commondcs-V1-ndk_platform.so|34d9bd68e99e02f08f45cb14c5cda8487bf6a668
 vendor/lib64/vendor.qti.hardware.camera.aon-service-impl.so|534218a04cf3efdc6dcc93789177ce7211ca6d88
 vendor/lib64/vendor.qti.hardware.camera.postproc@1.0-service-impl.so|ac038e09cf91769f52d72e150b9f82125f6d0a77
 
