@@ -98,7 +98,13 @@ $(call inherit-product, vendor/oneplus/aston/aston-vendor.mk)
 # OPlus Camera (global 12R stack)
 $(call inherit-product-if-exists, vendor/oplus/camera/camera-vendor.mk)
 
+# OPlus camera framework stubs on boot classpath (com.oplus.* / android.os.Oplus*)
+$(call inherit-product-if-exists, hardware/oplus/oplus-fwk/oplus-fwk.mk)
+
 # APS P010 over-walk fix (GOT-interposer loaded into com.oplus.camera via libAlgoProcess.so
 # DT_NEEDED — see device/oneplus/astonc/apsfixup + extract-files.py .add_needed).
 PRODUCT_PACKAGES += \
     libapsfixup
+
+TARGET_BUILD_GAPPS := true
+$(call inherit-product, vendor/bcr/bcr.mk)

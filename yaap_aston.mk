@@ -18,6 +18,10 @@ $(call inherit-product, vendor/yaap/config/common_full_phone.mk)
 TARGET_ENABLE_BLUR := true
 TARGET_EXCLUDES_AUDIOFX := true
 TARGET_BOOT_ANIMATION_RES := 1080
+TARGET_BUILD_GAPPS := true
+
+# BCR
+$(call inherit-product, vendor/bcr/bcr.mk)
 
 # Lindroid
 TARGET_BUILD_LINDROID := true
@@ -37,3 +41,4 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     DeviceProduct=CPH2585 \
     SystemDevice=OP5D35L1 \
     SystemName=CPH2585
+
