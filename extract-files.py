@@ -28,6 +28,7 @@ namespace_imports = [
     'vendor/oplus/camera',
     'vendor/qcom/opensource/display',
     'vendor/qcom/opensource/commonsys-intf/display',
+    'device/oneplus/aston',
 ]
 
 
