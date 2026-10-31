@@ -108,7 +108,7 @@ public abstract class SliderControllerBase {
             return;
         }
         boolean enabled = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, 1, UserHandle.USER_CURRENT) != 0;
+                Settings.System.HAPTIC_FEEDBACK_ENABLED, 1, UserHandle.USER_CURRENT) != 0;
         if (enabled) {
             mVibrator.vibrate(50);
         }
