@@ -32,7 +32,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.android.axion.compose.preferences.ClickablePreference
-import com.android.axion.compose.preferences.CustomSeekBar
+import org.lineageos.device.settings.ui.CustomSeekBar
 import com.android.axion.compose.preferences.ListPreference
 import com.android.axion.compose.preferences.PreferenceGroup
 import com.android.axion.compose.preferences.SwitchPreference

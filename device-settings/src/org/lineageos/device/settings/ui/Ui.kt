@@ -30,6 +30,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.android.axion.compose.preferences.ClickablePreference
+import androidx.compose.runtime.mutableFloatStateOf
+import com.android.axion.compose.preferences.LocalPreferencePosition
+import com.android.axion.compose.preferences.PreferencePosition
+import com.android.axion.compose.preferences.SliderPreference
+import kotlin.math.roundToInt
 import org.lineageos.device.settings.ui.picker.RadioChoiceDialog
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.painter.BitmapPainter
@@ -94,6 +99,56 @@ internal fun IconListPreference(
         )
     }
 }
+
+/** Kit [com.android.axion.compose.preferences.SliderPreference] adapter for integer preferences. */
+@Composable
+internal fun CustomSeekBar(
+    title: String,
+    value: Int,
+    onValueChange: (Int) -> Unit,
+    min: Int,
+    max: Int,
+    modifier: Modifier = Modifier,
+    summary: String = "",
+    defaultValue: Int? = null,
+    formatValue: ((Int) -> String)? = null,
+    enabled: Boolean = true,
+    position: PreferencePosition = LocalPreferencePosition.current,
+) {
+    var sliderValue by remember(value) { mutableFloatStateOf(value.coerceIn(min, max).toFloat()) }
+    val currentInt = sliderValue.roundToInt().coerceIn(min, max)
+    val displayValue = formatValue?.invoke(currentInt) ?: currentInt.toString()
+
+    SliderPreference(
+        title = title,
+        summary = summary,
+        value = sliderValue,
+        onValueChange = { newValue ->
+            sliderValue = newValue
+            val newInt = newValue.roundToInt().coerceIn(min, max)
+            if (newInt != value) {
+                onValueChange(newInt)
+            }
+        },
+        onValueChangeFinished = {
+            sliderValue = value.coerceIn(min, max).toFloat()
+        },
+        valueRange = min.toFloat()..max.toFloat(),
+        steps = 0,
+        displayValue = displayValue,
+        modifier = modifier,
+        enabled = enabled,
+        position = position,
+        onReset = if (defaultValue != null) {
+            {
+                val def = defaultValue.coerceIn(min, max)
+                sliderValue = def.toFloat()
+                onValueChange(def)
+            }
+        } else null,
+    )
+}
+
 
 @Composable
 internal fun rememberAppPainter(packageName: String): Painter? {
