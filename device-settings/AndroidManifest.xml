@@ -62,22 +62,19 @@
         <!-- Device Settings -->
         <activity
             android:name=".DeviceSettingsActivity"
+            android:label="@string/device_title"
             android:exported="true">
             <intent-filter>
+                <action android:name="com.android.settings.action.IA_SETTINGS" />
                 <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data
                 android:name="com.android.settings.category"
-                android:value="com.android.settings.category.ia.homepage" />
-            <meta-data
-                android:name="com.android.settings.group_key"
-                android:value="top_level_account_category" />
-            <meta-data
-                android:name="com.android.settings.keyhint"
-                android:value="top_level_device_settings" />
+                android:value="com.android.settings.category.ia.system" />
             <meta-data
                 android:name="com.android.settings.order"
-                android:resource="@integer/device_settings_top_level_order" />
+                android:value="-50" />
             <meta-data
                 android:name="com.android.settings.icon"
                 android:resource="@drawable/ic_settings_device" />
@@ -87,9 +84,6 @@
             <meta-data
                 android:name="com.android.settings.summary"
                 android:resource="@string/device_summary" />
-            <meta-data
-                android:name="com.android.settings.icon_color_scheme"
-                android:value="grey" />
         </activity>
 
         <service
